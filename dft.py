@@ -1,6 +1,5 @@
 # Depth first traversal
-
-graph = { "A": ["B", "C", "D"],
+starting_graph = { "A": ["B", "C", "D"],
           "B": ["A", "E"],
           "C": ["A", "D"],
           "D": ["A", "C", "F"],
@@ -62,13 +61,21 @@ def dft(graph, start_node):
     visited.append(current_node)
 
     while not stack.is_empty():
+        neighbor_found = False
         for node in graph[current_node]:
-            for item in visited:
-                if node != item:
-                    current_node = node
-                    stack.push(node)
-                    visited.append(node)
-                else:
-                    stack.pop(current_node)
+            if node not in visited:
+                print(node, visited)
+                neighbor_found = True
+                current_node = node
+                input()
+        if not neighbor_found:
+            stack.stack_pop()
+            current_node = stack.peek()
+        print(visited)
+
+        stack.push(current_node)
+        visited.append(current_node)
+    print(visited)
 
 
+dft(starting_graph, "A")
