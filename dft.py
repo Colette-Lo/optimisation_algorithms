@@ -62,20 +62,16 @@ def dft(graph, start_node):
 
     while not stack.is_empty():
         neighbor_found = False
-        for node in graph[current_node]:
-            if node not in visited:
-                print(node, visited)
+        for neighbor in graph[current_node]:
+            if neighbor not in visited:
                 neighbor_found = True
-                current_node = node
-                input()
+                current_node = neighbor
+                stack.push(current_node)
+                visited.append(current_node)
+                break
         if not neighbor_found:
             stack.stack_pop()
             current_node = stack.peek()
-        print(visited)
-
-        stack.push(current_node)
-        visited.append(current_node)
     print(visited)
-
 
 dft(starting_graph, "A")
